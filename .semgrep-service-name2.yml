@@ -2954,3 +2954,31 @@ rules:
             - pattern-not-regex: "^TestAccRedshift"
             - pattern-regex: ^TestAcc.*
     severity: WARNING
+  - id: redshift-in-const-name
+    languages:
+      - go
+    message: Do not use "Redshift" in const name inside redshift package
+    paths:
+      include:
+        - internal/service/redshift
+    patterns:
+      - pattern: const $NAME = ...
+      - metavariable-pattern:
+          metavariable: $NAME
+          patterns:
+            - pattern-regex: "(?i)Redshift"
+    severity: WARNING
+  - id: redshift-in-var-name
+    languages:
+      - go
+    message: Do not use "Redshift" in var name inside redshift package
+    paths:
+      include:
+        - internal/service/redshift
+    patterns:
+      - pattern: var $NAME = ...
+      - metavariable-pattern:
+          metavariable: $NAME
+          patterns:
+            - pattern-regex: "(?i)Redshift"
+    severity: WARNING
